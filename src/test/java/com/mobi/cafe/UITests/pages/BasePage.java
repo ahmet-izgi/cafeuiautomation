@@ -34,7 +34,7 @@ public abstract class BasePage {
 			driver = new PhantomJSDriver();
 		}
 
-		driver.manage().window().maximize();
+		// driver.manage().window().maximize();
 		driver.manage().timeouts().pageLoadTimeout(Constants.PAGE_LOAD_TIMEOUT, TimeUnit.SECONDS);
 		driver.manage().timeouts().implicitlyWait(Constants.IMPLICIT_WAIT, TimeUnit.SECONDS);
 
