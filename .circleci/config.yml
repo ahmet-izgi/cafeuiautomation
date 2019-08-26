@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/openjdk:8-jdk
+      - image: circleci/node:jessie-browsers
     steps:
       - checkout
       #- run: mkdir test-reports
@@ -13,4 +13,4 @@ jobs:
           name: Start Selenium
           command: java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
           background: true
-      - run: mvn test
+      - run: yarn test
