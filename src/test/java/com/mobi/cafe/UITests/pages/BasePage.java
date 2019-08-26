@@ -2,10 +2,13 @@ package com.mobi.cafe.UITests.pages;
 
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.NoAlertPresentException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.phantomjs.PhantomJSDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.mobi.cafe.UITests.helper.Constants;
 import com.mobi.cafe.UITests.helper.Constants.Browsers;
@@ -55,7 +58,7 @@ public abstract class BasePage {
 	}
 
 	/**
-	 * Confirming alert dialogs when necessary.
+	 * Confirming alert dialogs when necessary. Alerts handled for Phantomjs and chromedriver.
 	 * 
 	 */
 	public void confirmAlert() {
@@ -64,6 +67,7 @@ public abstract class BasePage {
 			phantom.executeScript("window.alert = function(){}");
 			phantom.executeScript("window.confirm = function(){return true;}");
 		} else {
+			new WebDriverWait(driver, Constants.PAGE_LOAD_TIMEOUT).ignoring(NoAlertPresentException.class).until(ExpectedConditions.alertIsPresent());
 			driver.switchTo().alert().accept();
 		}
 	}

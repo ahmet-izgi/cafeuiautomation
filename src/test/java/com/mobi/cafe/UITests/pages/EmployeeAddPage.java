@@ -54,7 +54,7 @@ public class EmployeeAddPage extends BasePage {
 	}
 
 	/**
-	 * Used for filling the
+	 * Used for filling the employee form
 	 */
 	public void fillEmployee() {
 		inputFirstName.clear();
@@ -77,6 +77,11 @@ public class EmployeeAddPage extends BasePage {
 		buttonUpdate.click();
 	}
 
+	/**
+	 * Check the given employee and the opened employee are same
+	 * @param employee
+	 * @return
+	 */
 	public boolean checkEmployeeOpened(Employee employee) {
 		// Check opened employee's first and last names equals to shown employee
 		return (inputFirstName.getAttribute("value").equals(employee.getFirstName()) || inputLastName.getAttribute("value").equals(employee.getLastName()));
@@ -86,6 +91,10 @@ public class EmployeeAddPage extends BasePage {
 		buttonBack.click();
 	}
 
+	/**
+	 * Check alert message is displayed with correct message
+	 * @return
+	 */
 	public boolean checkErrorAlertForCreate() {
 		new WebDriverWait(driver, Constants.PAGE_LOAD_TIMEOUT).ignoring(NoAlertPresentException.class).until(ExpectedConditions.alertIsPresent());
 		return driver.switchTo().alert().getText().contains(Constants.EMPLOYEE_CREATION_ERROR);
