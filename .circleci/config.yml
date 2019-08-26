@@ -13,4 +13,8 @@ jobs:
           name: Start Selenium
           command: java -jar selenium-server-standalone-3.5.3.jar -log test-reports/selenium.log
           background: true
-      - run: mvn test
+workflows:
+  version: 2
+  test:
+    jobs:
+      - test
