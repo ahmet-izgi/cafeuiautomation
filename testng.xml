@@ -1,0 +1,29 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+<suite name="softwaretestingmaterial">
+	<test name="testngTest">
+		<classes>
+			<class name="com.mobi.cafe.UITests.LoginPageTest">
+				<methods>
+					<include name="wrong_username" />
+					<include name="empty_password" />
+				</methods>
+			</class>
+			<class name="com.mobi.cafe.UITests.EmployeeListPageTest">
+				<methods>
+					<include name="list_employees" />
+					<include name="open_employee_details_with_double_click" />
+					<include name="edit_employee_when_edit_button_disabled" />
+					<include name="delete_employee_when_delete_button_disabled" />
+				</methods>
+			</class>
+			<class name="com.mobi.cafe.UITests.EmployeeAddEditTest">
+				<methods>
+					<include name="add_employee" />
+					<include name="delete_employee_on_edit_page" />
+					<include name="add_employee_with_long_username" />
+					<include name="edit_employee_with_invalid_email_address" />
+				</methods>
+			</class>
+		</classes>
+	</test>
+</suite>

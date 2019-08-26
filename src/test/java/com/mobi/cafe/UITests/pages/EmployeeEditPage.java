@@ -61,6 +61,11 @@ public class EmployeeEditPage extends BasePage {
 	}
 
 	public void fillEmployee() {
+		inputFirstName.clear();
+		inputLastName.clear();
+		inputStartDate.clear();
+		inputEmail.clear();
+
 		if (employee.getFirstName() != null || !employee.getFirstName().isEmpty()) {
 			inputFirstName.sendKeys(employee.getFirstName());
 		}

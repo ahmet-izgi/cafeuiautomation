@@ -40,9 +40,9 @@ public class EmployeeListPageTest extends BasePage {
 	}
 
 	// TC_0007
-	@Test
+	@Test(dependsOnGroups = "preconditions")
 	public void open_employee_details_with_double_click() {
-		Employee employee = new Employee("John2", "Doe2");
+		Employee employee = new Employee("Ahmet", "İzgi");
 		employeeListPage = loginPage.login(User.getDefaultCorrectUser());
 		employeeEditPage = employeeListPage.openEmployeeEditWithDoubleClick(employee);
 
@@ -50,9 +50,9 @@ public class EmployeeListPageTest extends BasePage {
 	}
 
 	// TC_0013
-	@Test 
+	@Test(dependsOnGroups = "preconditions")
 	public void edit_employee_when_edit_button_disabled() {
-		Employee employee = new Employee("John", "Doe");
+		Employee employee = new Employee("Ahmet", "İzgi");
 		employeeListPage = loginPage.login(User.getDefaultCorrectUser());
 		employeeEditPage = employeeListPage.openEditPage(employee);
 		assertTrue(employeeListPage.isEmployeeListPage());
@@ -66,7 +66,7 @@ public class EmployeeListPageTest extends BasePage {
 	}
 
 	// TC_0019 ERROR
-	// @Test
+	// @Test(dependsOnGroups = "preconditions")
 	public void delete_employee() {
 		Employee employee = new Employee("Ahmet", "İzgi");
 		employeeListPage = loginPage.login(User.getDefaultCorrectUser());

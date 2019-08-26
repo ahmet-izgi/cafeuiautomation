@@ -34,7 +34,7 @@ public class EmployeeAddEditTest extends BasePage {
 	}
 
 	// TC_0008
-	@Test
+	@Test(groups = "preconditions")
 	public void add_employee() {
 		Employee employee = new Employee("Ahmet", "İzgi", "2020-01-01", "testing@attention.mail");
 		employeeListPage = loginPage.login(User.getDefaultCorrectUser());
@@ -45,7 +45,7 @@ public class EmployeeAddEditTest extends BasePage {
 	}
 
 	// TC_0020
-	@Test
+	@Test(dependsOnGroups = "preconditions")
 	public void delete_employee_on_edit_page() {
 		Employee employee = new Employee("Ahmet", "İzgi");
 		employeeListPage = loginPage.login(User.getDefaultCorrectUser());
@@ -64,9 +64,9 @@ public class EmployeeAddEditTest extends BasePage {
 	}
 
 	// TC_0018
-	@Test
+	@Test(dependsOnGroups = "preconditions")
 	public void edit_employee_with_invalid_email_address() {
-		Employee employee = new Employee("John", "Doe", "2020-01-01", "testing_attention.mail");
+		Employee employee = new Employee("Ahmet", "İzgi", "2020-01-01", "testing_attention.mail");
 		employeeListPage = loginPage.login(User.getDefaultCorrectUser());
 		employeeEditPage = employeeListPage.openEditPage(employee);
 		employeeEditPage.fillEmployee();
