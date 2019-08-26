@@ -26,6 +26,7 @@ public abstract class BasePage {
 	public static void initialize() {
 		// We can read selected browser with a property file. I used Chrome as default.
 		if (Browsers.CHROME == Browsers.CHROME) {
+			WebDriverManager.chromedriver().setup();
 			driver = new ChromeDriver();
 		} else if (Browsers.FIREFOX == Browsers.FIREFOX) {
 			driver = new FirefoxDriver();
