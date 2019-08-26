@@ -96,8 +96,12 @@ public class EmployeeAddPage extends BasePage {
 	 * @return
 	 */
 	public boolean checkErrorAlertForCreate() {
-		new WebDriverWait(driver, Constants.PAGE_LOAD_TIMEOUT).ignoring(NoAlertPresentException.class).until(ExpectedConditions.alertIsPresent());
-		return driver.switchTo().alert().getText().contains(Constants.EMPLOYEE_CREATION_ERROR);
+		try {
+			new WebDriverWait(driver, Constants.PAGE_LOAD_TIMEOUT).ignoring(NoAlertPresentException.class).until(ExpectedConditions.alertIsPresent());
+			return driver.switchTo().alert().getText().contains(Constants.EMPLOYEE_CREATION_ERROR);
+		} finally {
+			driver.switchTo().alert().accept();
+		}
 	}
 
 	public void logOut() {
