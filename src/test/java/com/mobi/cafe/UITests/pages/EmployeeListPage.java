@@ -57,17 +57,32 @@ public class EmployeeListPage extends BasePage {
 		buttonLogOut.click();
 	}
 
+	/**
+	 * Clicks on add button
+	 * @param employee
+	 * @return
+	 */
 	public EmployeeAddPage openCreatePage(Employee employee) {
 		buttonCreate.click();
 		return new EmployeeAddPage(employee);
 	}
 
+	/**
+	 * Finds and selects the given employee on the list and clicks on edit button
+	 * @param employee
+	 * @return
+	 */
 	public EmployeeEditPage openEditPage(Employee employee) {
 		findEmployeeOnList(employee).click();
 		buttonEdit.click();
 		return new EmployeeEditPage(employee);
 	}
 
+	/**
+	 * 
+	 * @param employee
+	 * @return
+	 */
 	public EmployeeEditPage openEmployeeEditWithDoubleClick(Employee employee) {
 		Actions actions = new Actions(driver);
 		actions.doubleClick(findEmployeeOnList(employee)).perform();
@@ -75,7 +90,11 @@ public class EmployeeListPage extends BasePage {
 		return new EmployeeEditPage(employee);
 	}
 
-	// find the first occurence of employee with name&surname in the employee-list and click on it for selection
+	/**
+	 * find the first occurence of employee with name&surname in the employee-list and click on it for selection
+	 * @param employee
+	 * @return
+	 */
 	private WebElement findEmployeeOnList(Employee employee) {
 		try {
 			return listPersons.stream().filter(person -> person.getText().equals(employee.getFirstName() + " " + employee.getLastName())).findFirst().get();
@@ -84,11 +103,20 @@ public class EmployeeListPage extends BasePage {
 		}
 	}
 
+	/**
+	 * This method can be used for counting employee on the list with same first name and last name
+	 * @param employee
+	 * @return
+	 */
 	public long findEmployeeCountOnList(Employee employee) {
-		System.out.println("person count" + listPersons.stream().filter(person -> person.getText().equals(employee.getFirstName() + " " + employee.getLastName())).count());
 		return listPersons.stream().filter(person -> person.getText().equals(employee.getFirstName() + " " + employee.getLastName())).count();
 	}
 
+	/**
+	 * Delete given employee
+	 * @param employee
+	 * @return
+	 */
 	public EmployeeListPage deleteEmployee(Employee employee) {
 		findEmployeeOnList(employee).click();
 		buttonDelete.click();
@@ -100,13 +128,16 @@ public class EmployeeListPage extends BasePage {
 		return listPersons != null;
 	}
 
-	/*
+	/**
 	 * Check for correct page
 	 */
 	public boolean isEmployeeListPage() {
 		return driver.getCurrentUrl().contains(urlIdentifier);
 	}
 
+	/**
+	 * This method is currently not used. But it can be used for removing all employees from the list.
+	 */
 	public void deleteAllEmployees() {
 		listPersons.stream().forEach(element -> {
 			element.click();
@@ -117,6 +148,10 @@ public class EmployeeListPage extends BasePage {
 		});
 	}
 
+	/**
+	 * Check the delete button is available to click operation
+	 * @return
+	 */
 	public boolean availableToDelete() {
 		return !buttonDelete.getAttribute("class").contains(CssClasses.DISABLED.getClassName());
 	}
