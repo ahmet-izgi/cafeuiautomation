@@ -35,7 +35,7 @@ public class LoginPage extends BasePage {
 		try {
 			(new WebDriverWait(driver, Constants.PAGE_LOAD_TIMEOUT)).until(ExpectedConditions.urlContains(urlIdentifier));
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("Page did not open");
 		}
 	}
 
